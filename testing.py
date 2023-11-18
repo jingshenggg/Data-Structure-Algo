@@ -33,25 +33,55 @@
 # for i in range(0,len(needle)):
 #     print (needle[i])
 
-import hashlib
+###############################################################################################
+# hash table in python
 
-def sha256_hash(input_string):
-    # Create a SHA-256 hash object
-    sha256 = hashlib.sha256()
+# def twosum():
+#     nums = [5,2,7,10,3,9]
+#     target = 8
+#     dic = {}
+#     for i in range(len(nums)):
+#         num = nums[i]
+#         complement = target - num
+#         if complement in dic.keys():
+#             print(nums[i], complement) #print values
+#             return [i, dic[complement]] #return index
+#         dic[num] = i
+# twosum()
+    
+###############################################################################################
+# hash table for counting unique characters in string
+from collections import defaultdict
 
-    # Convert the input string to bytes
-    input_bytes = input_string.encode('utf-8')
+# def find_longest_substring(s, k):
+#     counts = defaultdict(int)
+#     left = ans = 0
+#     for right in range(len(s)):
+#         counts[s[right]] += 1
+#         while len(counts) > k:
+#             counts[s[left]] -= 1
+#             if counts[s[left]] == 0:
+#                 del counts[s[left]]
+#             left += 1
+        
+#         ans = max(ans, right - left + 1)
+#     print(ans)
+#     return ans
+# find_longest_substring("eceba",2)
 
-    # Update the hash object with the input bytes
-    sha256.update(input_bytes)
+##############################################################################################
+# find anagrams
 
-    # Get the hexadecimal representation of the hash value
-    hashed_value = sha256.hexdigest()
+from typing import List
 
-    return hashed_value
+def groupAnagrams(strs: List[str]) -> List[List[str]]:
+    groups = defaultdict(list)
+    for s in strs:
+        key = "".join(sorted(s))
+        groups[key].append(s)
+    result = list(groups.values())
+    print(result)
+    return result
 
-# Example usage
-plaintext = "Hello, World!"
-hashed_value = sha256_hash(plaintext)
-print("Plaintext:", plaintext)
-print("SHA-256 Hash:", hashed_value)
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+groupAnagrams(strs)
