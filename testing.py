@@ -51,7 +51,7 @@
     
 ###############################################################################################
 # hash table for counting unique characters in string
-from collections import defaultdict
+# from collections import defaultdict
 
 # def find_longest_substring(s, k):
 #     counts = defaultdict(int)
@@ -72,16 +72,36 @@ from collections import defaultdict
 ##############################################################################################
 # find anagrams
 
-from typing import List
+# from typing import List
 
-def groupAnagrams(strs: List[str]) -> List[List[str]]:
-    groups = defaultdict(list)
-    for s in strs:
-        key = "".join(sorted(s))
-        groups[key].append(s)
-    result = list(groups.values())
-    print(result)
-    return result
+# def groupAnagrams(strs: List[str]) -> List[List[str]]:
+#     groups = defaultdict(list)
+#     for s in strs:
+#         key = "".join(sorted(s))
+#         groups[key].append(s)
+#     result = list(groups.values())
+#     print(result)
+#     return result
 
-strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-groupAnagrams(strs)
+# strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+# groupAnagrams(strs)
+
+#################################################################################################
+# DFS to find max depth of binary tree 
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+from pyparsing import Optional
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        left = self.maxDepth(root.left)
+        right = self.maxDepth(root.right)
+        print (max(left, right) + 1)
+        return max(left, right) + 1
